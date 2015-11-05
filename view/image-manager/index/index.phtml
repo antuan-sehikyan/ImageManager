@@ -1,0 +1,73 @@
+<?php
+//$this->headLink()->appendStylesheet($this->basePath('css/ttfjs.css'));
+//$this->headScript()->appendFile($this->basePath('js/ttf.js/vendor/jdataview.js'));        
+//$this->headScript()->appendFile($this->basePath('js/ttf.js/src/ttf.js'));
+//$this->headScript()->appendFile($this->basePath('js/ttf.js/src/glyflist.js')); 
+$this->headLink()->appendStylesheet($this->basePath('css/image.css')); 
+$this->headScript()->appendFile($this->basePath('js/jqthumb.js')); 
+$this->headScript()->appendFile($this->basePath('js/image-modal.js'));
+?>
+
+<header>
+	<h1>My Images List</h1>
+	<hr style="border-color: red">
+	<p><?php echo $this->imageForm; ?></p> 	
+</header>
+
+<div class="row">
+	<div class="thumb-panel col-xs-12">
+		<?php foreach($images as $image): ?>
+			<div class="thumb col-xs-3 col-md-2">
+				<a class="link img-link<?php echo $image->id; ?>" data-link="<?php echo $image->id; ?>" href="#">
+					<img class="demo" src="/tmpuploads/<?php echo $image->tmpName; ?>">
+				</a>
+<!--
+				<a id="page-help" href="<?php// echo $this->url('image', array('action' => 'view', 'id' => $image->id)) ?>" onclick="window.open(this.href, 'popupwindow', 'width=500,height=300'); return false;">what is this?</a>
+-->
+				<div class="controls">
+					<span class="thumb-del">
+						<a href="<?php echo $this->url('image', array('action' => 'delete', 'id' => $image->id)) ?>">
+							<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+						</a>
+					</span>
+					<span class="thumb-edit">
+						<a href="<?php echo $this->url('image', array('action' => 'edit', 'id' => $image->id)) ?>">
+							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+						</a>
+					</span>
+				</div>
+			</div>
+		<?php endforeach; ?>
+	</div>
+</div>
+<div id="lightbox">
+<?php// echo '<br>' . $this->mytemplate; ?>
+</div>
+<script>
+$('.demo').jqthumb({
+	classname: '',
+	width  : 150,   // DEFAULT: 100
+    height : 150,
+});
+</script>
+<script>
+(function(){
+	$('#lightbox').hide();
+	var url = "http://linus-kafka.loc/image/view/"
+	$(".link").each(function(index, value) { 
+		var id = $(this).data('link');
+		$(".img-link" + id).on('click', function(event){
+			var href = url + id;
+			$('#lightbox').fadeOut('slow', function(){
+				$('#lightbox').load(href, function(){
+					$('#lightbox').fadeIn('slow');
+				});
+			});
+		});
+		$('#lightbox').click(function(){
+			$('#lightbox').fadeOut('slow');
+		});				
+	});
+})();
+	
+</script>

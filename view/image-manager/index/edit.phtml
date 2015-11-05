@@ -1,0 +1,35 @@
+<?php
+//$this->headLink()->appendStylesheet($this->basePath('css/ttfjs.css'));
+$this->headLink()->appendStylesheet($this->basePath('css/image.css'));
+//$this->headScript()->appendFile($this->basePath('js/ttf.js/vendor/jdataview.js'));        
+//$this->headScript()->appendFile($this->basePath('js/ttf.js/src/ttf.js'));
+//$this->headScript()->appendFile($this->basePath('js/ttf.js/src/glyflist.js'));  
+?>
+<?php
+$title = 'Edit Your Image';
+$this->headTitle($title);
+?>
+<header>
+	<h1><?php echo $this->escapeHtml($title) ?></h1>
+	<hr style="border-color: red">
+	
+	<?php $form->prepare(); ?>
+	<?php echo $this->form()->openTag($form); ?>
+	<?php $fileElement = $form->get('image-file'); ?>
+	<?php echo $this->formLabel($fileElement); ?>
+	<div class="image-validation-field">
+		<?php echo $this->formFile($fileElement); ?>
+		<?php echo $this->formElementErrors($fileElement); ?>
+		<?php $submit = $form->get('submit'); ?>
+		<?php echo $this->formSubmit($submit); ?>	
+	</div>
+	<?php echo $this->form()->closeTag($form); ?>	
+</header>	
+	
+<section>
+	<img src="/tmpuploads/<?php echo $image->tmpName; ?>"> || <a href="<?php echo $this->url('image', array('action' => 'delete', 'id' => $image->id)) ?>">Delete</a>
+	|| <a href="<?php echo $this->url('image', array('action' => 'edit', 'id' => $image->id)) ?>">Edit</a>
+</section>
+
+
+
