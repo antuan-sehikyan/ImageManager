@@ -1,10 +1,9 @@
-ZF2 Image Upload Module + Doctrine Example + WebinoImageThumb
+ZF2 Image Upload Module + Doctrine + WebinoImageThumb Example
 ======================================
 
 ##Introduction
 
-This is a ZF2 Image Upload Module using [DoctrineModule](https://github.com/doctrine/DoctrineModule) +  
-[WebinoImageThumb](https://github.com/webino/WebinoImageThumb) Integration.
+This is a ZF2 Image Upload Module using [DoctrineModule](https://github.com/doctrine/DoctrineModule) + [WebinoImageThumb](https://github.com/webino/WebinoImageThumb) Integration.
 
 ##Installation Using Composer
 
